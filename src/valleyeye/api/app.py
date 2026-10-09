@@ -94,6 +94,21 @@ def create_app(
         lifespan=lifespan,
     )
     application.state.settings = app_settings
+
+    # ── CORS ── allow the Vite dev frontend (minimum required change)
+    from fastapi.middleware.cors import CORSMiddleware
+    application.add_middleware(
+        CORSMiddleware,
+        allow_origins=[
+            "http://localhost:5173",
+            "http://127.0.0.1:5173",
+            "http://localhost:3000",
+            "http://127.0.0.1:3000",
+        ],
+        allow_credentials=False,
+        allow_methods=["GET", "POST", "OPTIONS"],
+        allow_headers=["*"],
+    )
     manager = JobManager(
         app_settings,
         stage_handlers if stage_handlers is not None else default_stage_handlers(),
