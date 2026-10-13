@@ -644,7 +644,7 @@ function SystemStatusPage({ health, job }: { health: { status: string; version: 
           <div className="dc-title">API Status</div>
           <div className="dc-big" style={{ color: health ? 'var(--green)' : 'var(--red)', fontSize:18 }}>{health ? '● Online' : '● Offline'}</div>
           {health && <div className="dc-sub">Version: v{health.version}</div>}
-          {!health && <div className="dc-sub">Cannot reach backend at configured URL. Start with: <code>uvicorn src.valleyeye.api.main:app --reload</code></div>}
+          {!health && <div className="dc-sub">Cannot reach backend at configured URL. Start with: <code>uvicorn valleyeye.api.app:app --reload</code></div>}
         </div>
         <div className="detail-card">
           <div className="dc-title">Current Job</div>
@@ -726,7 +726,7 @@ function SettingsPage() {
             <code>cd frontend && npm install && npm run dev</code><br/><br/>
             <strong>Backend:</strong><br/>
             <code>pip install -e ".[dev]"</code><br/>
-            <code>uvicorn src.valleyeye.api.main:app --reload</code><br/><br/>
+            <code>uvicorn valleyeye.api.app:app --reload</code><br/><br/>
             <strong>Tests:</strong><br/>
             <code>pytest tests/unit -v</code>
           </div>
